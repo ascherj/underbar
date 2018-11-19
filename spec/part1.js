@@ -344,9 +344,11 @@
 
       it('should handle iterators that work with a sorted array', function() {
         var iterator = function(value) { return value === 1; };
+        var isEven = function(value) { return value % 2 === 0 };
         var numbers = [1, 2, 2, 3, 4, 4];
 
-        expect(_.uniq(FILL_ME_IN)).to.eql([1, 2]);
+        expect(_.uniq(numbers, true, iterator)).to.eql([1]); // Fixed bug: [1, 2] -> [1]
+        expect(_.uniq(numbers, true, isEven)).to.eql([2, 4]); // Added assertion to further test _.uniq()
       });
 
       it('should produce a brand new array instead of modifying the input array', function() {
