@@ -261,7 +261,7 @@
 
     _.each(additionalObjects, function(source) {
       for (var key in source) {
-        if (obj[key] === undefined) {
+        if (!obj.hasOwnProperty(key)) {
           obj[key] = source[key];
         }
       }
