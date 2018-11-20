@@ -173,14 +173,15 @@
   _.reduce = function(collection, iterator, accumulator) {
     var startingIndex = 0;
 
+
     if (accumulator === undefined) {
       accumulator = collection[0];
-      startingIndex++;
+      collection = collection.slice(1);
     }
 
-    for (var i = startingIndex; i < collection.length; i++) {
-      accumulator = iterator(accumulator, collection[i], i, collection);
-    }
+    _.each(collection, function(element) {
+      accumulator = iterator(accumulator, element);
+    });
 
     return accumulator;
   };
